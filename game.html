@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Surprise</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body class="page2">
+  <div class="container">
+    <h1>Mini Game ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧</h1>
+    <h2>Clue : Bumi itu bulat 🌍 </h2>
+    <p>80 + 80 = </p>
+    <input type="text" id="jawaban" placeholder="Tulis jawaban di sini...">
+    <button class="btn" onclick="cekJawaban()">Submit</button>
+    <p id="result"></p>
+  </div>
+  <script>
+    function cekJawaban() {
+      let ans = document.getElementById("jawaban").value.toLowerCase().trim();
+      let result = document.getElementById("result");
+      if(ans === "6"){
+        result.innerHTML = "🎉 Benar! Klik di bawah untuk lanjut.";
+        confetti(); // efek confetti
+        setTimeout(() => {
+          window.location.href = "final.html";
+        }, 2000);
+      } else {
+        result.innerHTML = "❌ Salah, coba lagi ya!";
+      }
+    }
+  </script>
+</body>
+</html>

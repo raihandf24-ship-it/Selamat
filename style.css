@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom right, #e6f0ff, #ffffff);
+  color: #003366;
+  text-align: center;
+}
+
+.btn {
+  background: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 15px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+/* Halaman 3 */
+.container-final {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 50px;
+}
+
+.left {
+  width: 45%;
+  text-align: left;
+}
+
+.right {
+  width: 45%;
+}
+
+.slideshow img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Efek Love */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 24px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Efek Ketik */
+#typing-text {
+  font-size: 1.2rem;
+  color: #004080;
+  margin-top: 15px;
+  line-height: 1.6;
+  min-height: 120px; /* biar stabil */
+  border-right: 2px solid #004080;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+
+/* Cursor blink di teks ketikan */
+.cursor::after {
+  content: "|";
+  animation: blink 0.8s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Untuk HP (layar max 768px) */
+@media screen and (max-width: 768px) {
+  .container-final {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  .slideshow img {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 15px;
+  }
+
+  #typing-text {
+    font-size: 14px; /* biar gak kepanjangan */
+  }
+}

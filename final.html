@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page3">
+  <div class="container-final">
+    <!-- Bagian Kiri -->
+    <div class="left">
+      <h1>Selamat Ulang Tahun Sayangkuu 💙</h1>
+      <p id="typing-text"></p>
+      <button id="playMusic" class="btn">▶️ Putar Musik</button>
+    </div>
+
+    <!-- Bagian Kanan -->
+    <div class="right">
+      <div class="slideshow" id="slideshow"></div>
+    </div>
+  </div>
+
+  <!-- Musik -->
+  <audio id="bgMusic" loop>
+    <source src="assets/birthday.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
+  <script>
+    // Efek love jatuh
+    function fallingHearts(){
+      const heart = document.createElement("div");
+      heart.innerHTML = "💙";
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),5000);
+    }
+    setInterval(fallingHearts,300);
+
+    // Generate slideshow otomatis (16 foto)
+    const slideshowContainer = document.getElementById("slideshow");
+    const totalFotos = 16;
+    for(let i=1; i<=totalFotos; i++){
+      let img = document.createElement("img");
+      img.src = `assets/foto${i}.jpg`;
+      img.classList.add("slide");
+      slideshowContainer.appendChild(img);
+    }
+
+    // Slideshow loop
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("slide");
+    function showSlides(){
+      for(let s of slides){ s.style.display = "none"; }
+      slideIndex++;
+      if(slideIndex > slides.length) slideIndex = 1;
+      slides[slideIndex-1].style.display = "block";
+      setTimeout(showSlides, 3000);
+    }
+    showSlides();
+
+    // Efek mengetik
+    const message = 'ꜱᴇʟᴀᴍᴀᴛ ᴜʟᴀɴɢ ᴛᴀʜᴜɴ ɴɪꜱʀɪɴᴀ ꜱᴀʏᴀɴɢɢɢ ,ᴄɪᴇᴇ ᴜᴅᴀʜ 21 ᴛᴀʜᴜɴ ꜱᴇʟᴀᴍᴀᴛ ʏᴀʜʜ ꜱᴇᴍᴏɢᴀ ᴅɪᴜᴍᴜʀ 21 ᴛᴀʜᴜɴ ɪɴɪ ꜱᴇɢᴀʟᴀ ʏᴀɴɢ ᴋᴀᴍᴜ ɪɴɢɪɴᴋᴀɴ ᴛᴇʀᴄᴀᴘᴀɪ ᴅᴀɴ ꜱᴇᴍᴏɢᴀ ᴊᴜɢᴀ ᴅɪʙᴇʀɪ ᴋᴇꜱᴇʜᴀᴛᴀɴ ᴅᴀɴ ᴜᴍᴜʀ ʏᴀɴɢ ᴘᴀɴᴊᴀɴɢ ᴋᴀʏᴀɴʏᴀ ʙᴀʀᴜ ᴛᴀʜᴜɴ ɪɴɪ ʏᴀʜ ᴀᴋᴜ ɴɢᴜᴄᴀᴘɪɴ ᴋᴀᴍᴜ ᴜʟᴀɴɢ ᴛᴀʜᴜɴ ᴅɪ ʜᴀʀɪ ʜ ᴋᴀʀɴᴀ ꜱᴇʙᴇʟᴜᴍɴʏᴀ ᴘᴜᴛᴜꜱ ᴀᴡᴏᴋᴡᴏᴋᴀᴡᴏ ᴍᴀᴀꜰ ʏ ꜱᴇᴋᴀʟɪ ʟᴀɢɪ ꜱᴇʟᴀᴍᴀᴛ ᴜʟᴀɴɢ ᴛᴀʜᴜɴɴ ꜱᴀʏʏ ❤︎❤︎';
+    let i = 0;
+    function typeEffect(){
+      if(i < message.length){
+        document.getElementById("typing-text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeEffect, 50);
+      } else {
+        document.getElementById("typing-text").classList.add("cursor"); // blinking cursor
+      }
+    }
+    typeEffect();
+
+    // Musik manual play
+    const playBtn = document.getElementById("playMusic");
+    const bgMusic = document.getElementById("bgMusic");
+
+    playBtn.addEventListener("click", () => {
+      bgMusic.play().then(() => {
+        playBtn.style.display = "none";
+      }).catch(err => {
+        console.error("Musik gagal diputar:", err);
+        alert("⚠️ Musik gagal diputar. Pastikan file 'birthday.mp3' ada di folder assets/");
+      });
+    });
+  </script>
+</body>
+</html>
